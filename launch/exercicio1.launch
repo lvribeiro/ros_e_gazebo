@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim" respawn="true" />
+
+    <node pkg="ros_e_gazebo" type="exercicio1" name="exercicio1" output="screen" />
+</launch>
