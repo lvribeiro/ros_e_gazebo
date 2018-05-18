@@ -1,5 +1,7 @@
 <launch>
+    <arg name="max_vel" default="1.0"/>
     <node pkg="turtlesim" type="turtlesim_node" name="turtlesim" respawn="true" />
-
-    <node pkg="ros_e_gazebo" type="exercicio1" name="exercicio1" output="screen" />
+    <node pkg="ros_e_gazebo" type="exercicio1" name="exercicio1" output="screen">
+        <param name="max_vel" value="$(arg max_vel)"/>
+    </node>
 </launch>

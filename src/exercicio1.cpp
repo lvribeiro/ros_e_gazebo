@@ -26,9 +26,12 @@ int main(int argc, char **argv){
     ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("turtle1/cmd_vel", 1000);
 	ros::Subscriber sub = nh.subscribe("turtle1/pose", 1000, &poseCB);
 
+	double max_vel;
+	ros::param::get("~max_vel", max_vel);
+	ROS_INFO_STREAM("Velocidade maxima configurada para " << max_vel);
+
 	ros::Rate rate(100);
 	geometry_msgs::Twist msg;
-
 	while (ros::ok()){
 		cout << "Entre com o destino X Y\n";
 		cin >> destX >> destY;	
@@ -43,7 +46,7 @@ int main(int argc, char **argv){
 
 			if (dist < 0.1) break;
 
-			msg.linear.x = (dist > 1? 1 : 0.3);
+			msg.linear.x = (dist > 1? max_vel : max_vel/2.0);
 			msg.angular.z = z;
 
 			pub.publish(msg);
