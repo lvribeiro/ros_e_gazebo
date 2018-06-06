@@ -1,0 +1,5 @@
+<launch>
+	<node name="teleop" pkg="turtlesim" type="turtle_teleop_key" launch-prefix="xterm -e">
+		<remap from="turtle1/cmd_vel" to="mybot/teleop"/>
+	</node>
+</launch>
